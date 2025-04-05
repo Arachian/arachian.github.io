@@ -6,7 +6,7 @@ permalink: /about/
 
 ## Whoami
 
-I'm interested in anything to do with cybersecurity. I'm currently employed as a cyber defense operator (sounds cool, but not really). Anyway, I'll edit this later when I come up with something better.  
+I'm interested in anything to do with technology, but my passion lies in cybersecurity. I'm currently employed as a cyber defense operator (sounds cool, but not really). Anyway, I'll edit this later when I come up with something better.  
 
 ### Things I want to do (in no particular order)
 
