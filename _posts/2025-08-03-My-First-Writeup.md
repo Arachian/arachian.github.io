@@ -1,5 +1,3 @@
-## My First Writeup
-
 ### Background
 I recently attended a conference where Hack The Box was a sponsor. They also decided to host a CTF for attendees. I had participated in CTFs before (shout out to shellontheborder.com!) but had not done very well for myself. One thing that always happens though is that I end up learning a ton. This CTF was no different.
 
@@ -63,4 +61,3 @@ Happy hacking!
 
 
 Enter text in [Markdown](http://daringfireball.net/projects/markdown/). Use the toolbar above, or click the **?** button for formatting help.
-
