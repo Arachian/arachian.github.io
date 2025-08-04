@@ -5,20 +5,20 @@ I recently attended a conference where Hack The Box was a sponsor. They also dec
 This was a challenge in the "Full Pwn" category where you had to find the User and Root flag. Each flag is worth a certain amount of points. I spawned the challenge and got to work.
 
 I started by performing a nmap scan.  
-![nmap scan results](arachian.github.io/_posts/nmap_results_storage.png)
+<img src = "./images/nmap_results_storage.png" alt = "nmap scan results">
 
 Looking at the results I noticed that 22-SSH and 8080-HTTP were both open. I then entered the IP address with the port number at the end. In this case it was 10.129.244.218:8080 which took me to a GitLab Sign-in page. I was able to register for an account, but was unable to log in because an administrator had to approve the account.
-![Gitlab Login Page](arachian.github.io/_posts/gitlab_login_storage.png)
+<img src = "./images/gitlab_login_storage.png" alt = "gitlab login page">
 
 The scan also found a robots.txt file with 54 disallowed entries. I got hung up on the robots.txt file as I've never really done these types of challenges before. While I knew what a robots.txt file was, I didn't know that it could contain useful information. After learning this, I became hyper-focused on the information contained in the robots.txt file.  At this point I decided to take a loog at the page source to see what information was available there. When looking at the pae soure, line 3 seemed to stand out to me. I could not recall ever seeing any HTML tags that contained "og:". So I decided to visit the URL (http://ogp.me) and found out it was something called the Open Graph Protocol.
-![Gitlab Page Source](arachian.github.io/_posts/page_source_storage.png)
+<img src = "./images/page_source_storage.png" alt = "gitlab page source">
 
 I don't know why I thought to do this, but I decided to fire up Metasploit. I initially searched for "open" which contained too many results to go through so I backed out and searched for "graph". This was pure luck. I found a scanner that would enumerate users in the GitLab GraphQL API. 
-![Metasploit scanner](arachian.github.io/_posts/graphql_enumeration_storage.png)
+<img src = "./images/graphql_enumeration_storage.png" alt = "metasploit scanner">
 
 I ran the scanner and navigated the text file that the results were saved to. At this point, I knew there was a root user and the user I created. I probably could've assumed that there was a root account since I have to find the root flag, but I wasn't sure if there was some other user already registered for whic I had to get the flag from...anyway.
-![Metasploit scan results](arachian.github.io/_posts/graphql_enumeration_results_storage.png)
-![Metasploit scan results](arachian.github.io/_posts/graphql_enumeration_results2_storage.png)
+<img src = "./images/graphql_enumeration_results_storage.png" alt = "metasploit scan results">
+<img src = "./images/graphql_enumeration_results2_storage.png" alt = "metasploit scan results">
 
 I had an idea once I saw there was a root user. I went back to the address bar, entered the URL for the GitLab log in page and put a __/root__ at the end of it. This took me to the "Admin" profile, but I wasn't logged in. Again, never seen anything like this before so I started to poke around to see what I could find.  I clicked on Projects, Groups, Snippets, and Help...nothing useful there. I saw a question mark icon with a drop down arrow so I clicked that then clicked on the first item, "What's New". It listed some version numbers and it says my version is 13.9. Ok, cool.  
 
@@ -33,16 +33,16 @@ After taking the time to research the exploit and see how it worked, I figured o
 Man, at this point I've been working on this challenge for like 3 days. I've learned how to use NMap, Metasploit, and now I learned what netcat was...I'm learning a ton!
 
 I felt confident enough to attempt the exploit again...
-![Exploit execution](arachian.github.io/_posts/cve_execution_storage.png)
+<img src = "./images/cve_execution_storage.png" alt = "exploit execution">
 
 **HOLY SHIT! IT WORKED!**
-![Reverse Shell](arachian.github.io/_posts/reverse_shell_storage.png)
+<img src = "./images/reverse_shell_storage.png" alt = "reverse shell">
 
 Now to start poking around...I gave it a 'ls -a' command and got a long list of directory and files. I saw a file named 'security.txt' but it didn't contain anything useful. If I hadn't said it already, I don't really know what I'm doing, so I just gave it another "cd .." command then another "ls -a".
-![Directory and file list](arachian.github.io/_posts/poking_around_storage.png)
+<img src = "./images/poking_around_storage.png" alt = "direcory and file list">
 
 ****user.txt****...__COULD IT BE?!__
-![contents of user.txt file](arachian.github.io/_posts/flag_storage.png)
+<img src = "./images/flag_storage.png" alt = "contents of user.txt file">
 
 W00t! Got the user flag!
 
